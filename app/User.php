@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function spends()
+    {
+        return $this->hasMany(Spend::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function offices()
+    {
+        return $this->hasMany(Office::class);
+    }
 }
