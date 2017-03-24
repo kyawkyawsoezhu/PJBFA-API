@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 class CreateSpendsTable extends Migration
 {
@@ -19,7 +20,7 @@ class CreateSpendsTable extends Migration
             $table->integer('amount');
             $table->string('currency');
             $table->text('note')->nullable();
-            $table->date('spend_date');
+            $table->date('spend_date')->default(Carbon::now());
             $table->enum('spend_for_type',['projects','offices']);
             $table->integer('spend_for_id');
             $table->integer('user_id')->references('id')->on('users');
