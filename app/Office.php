@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Office extends Model
 {
+    use Filterable;
+
 	protected $fillable = [
         'title', 'description'
     ];
