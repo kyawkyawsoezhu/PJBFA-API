@@ -44,6 +44,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (!$this->isHttpException($exception) && !config('app.debug')) {
+            return $this->responseInternalError($request);
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -61,5 +65,17 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('login'));
+    }
+
+    protected function responseInternalError($request)
+    {
+        $code = 500;
+        if ($request->expectsJson()) {
+            return response([
+                'code' => $code,
+                'status' => 'Internal Server Error'
+            ], $code);
+        }
+        return response()->view('errors.500',[], 200);
     }
 }
