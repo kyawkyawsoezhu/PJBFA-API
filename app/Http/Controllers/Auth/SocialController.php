@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
-use App\User;
+use App\Models\User;
 use Socialite;
-use App\SocialAccount;
+use App\Models\SocialAccount;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

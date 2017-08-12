@@ -2,6 +2,8 @@
 
 namespace App\Filters;
 
+use App\Contracts\Filter;
+
 class OfficeFilter extends Filter{
 
 	public function select($value){

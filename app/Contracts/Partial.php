@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Partials;
+namespace App\Contracts;
 
 use \Illuminate\Database\Eloquent\Builder;
 use \Illuminate\Http\Request;

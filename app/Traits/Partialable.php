@@ -1,8 +1,7 @@
 <?php
-namespace App;
+namespace App\Traits;
 
-use App\Partials\Partial;
-use App\Partials\DefaultPartial;
+use App\Contracts\Partial;
 
 trait Partialable
 {

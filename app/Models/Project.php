@@ -1,15 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Office extends Model
+class Project extends Model
 {
-    use Filterable, Partialable;
-
 	protected $fillable = [
-        'title', 'description'
+        'title', 'description', 'date'
     ];
 
     public function user()
@@ -20,5 +18,5 @@ class Office extends Model
     public function spends()
     {
     	return $this->morphMany(Spend::class, 'spend_for');
-    }    
+    }
 }

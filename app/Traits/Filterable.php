@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Traits;
 
-use App\Filters\Filter;
+use App\Contracts\Filter;
 
 trait Filterable
 {

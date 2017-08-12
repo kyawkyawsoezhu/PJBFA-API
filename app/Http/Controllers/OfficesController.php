@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Office;
 use Illuminate\Http\Request;
 use App\Filters\OfficeFilter;
 use App\Partials\OfficePartial;
 use App\Http\Requests\StoreOffice;
 use App\Http\Requests\IndexOffice;
-use Illuminate\Validation\ValidationException;
 
 class OfficesController extends Controller
 {

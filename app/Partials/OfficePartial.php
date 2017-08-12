@@ -2,7 +2,7 @@
 
 namespace App\Partials;
 
-use App\Partials\UserPartial;
+use App\Contracts\Partial;
 
 class OfficePartial extends Partial
 {
