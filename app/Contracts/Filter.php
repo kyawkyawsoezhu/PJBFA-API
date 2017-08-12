@@ -2,33 +2,42 @@
 
 namespace App\Contracts;
 
+use App\Traits\OrderableFilter;
 use \Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Http\Request;
 
 abstract class Filter {
-	
-	protected $builder;
 
-	protected $request;
+    use OrderableFilter;
+
+    protected $builder;
+    protected $request;
+    protected $model;
 
 	public function __construct(Request $request){
 		$this->request = $request;
 	}
 
-	public function apply(Builder $builder){
-		$this->builder = $builder;
+    public function apply(Builder $builder, Model $model)
+    {
+        $this->builder = $builder;
+        $this->model = $model;
 
-		foreach ($this->request->query() as $key => $value) {
+        foreach ($this->filter() as $field => $value) {
+            $method = camel_case($field) . 'Filter';
+            $this->{$method}($value);
+        }
 
-			$method_name = camel_case($key);
+        return $this->builder;
+    }
 
-			if(method_exists($this, $method_name) && !empty($value)) {
-				$this->$method_name($value);
-			}
-
-		}
-
-		return $this->builder;
-	}
+    public function filter()
+    {
+        return array_filter($this->request->all(), function ($field) {
+            $method = camel_case($field) . 'Filter';
+            return method_exists($this, $method);
+        }, ARRAY_FILTER_USE_KEY);
+    }
 
 }

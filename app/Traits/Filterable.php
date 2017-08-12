@@ -7,6 +7,6 @@ use App\Contracts\Filter;
 trait Filterable
 {
     public function scopeFilter($query ,Filter $filter) {
-        $filter->apply($query);
+        $filter->apply($query, $this);
     }    
 }
