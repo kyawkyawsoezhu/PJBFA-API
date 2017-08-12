@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Office;
-use App\Http\Requests\StoreOffice;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use App\Filters\OfficeFilter;
+use App\Partials\OfficePartial;
+use App\Http\Requests\StoreOffice;
+use App\Http\Requests\IndexOffice;
+use Illuminate\Validation\ValidationException;
 
 class OfficesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, OfficeFilter $officeFilter)
+    public function index(IndexOffice $request, OfficeFilter $officeFilter, OfficePartial $officePartial)
     {
-        $response = $request->user()->offices()->filter($officeFilter)->paginate();
+        $response = $request->user()->offices()->filter($officeFilter)->partial($officePartial)->paginate();
         
         if($response->isEmpty()){
             return $this->responseEmptyResource();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Office extends Model
 {
-    use Filterable;
+    use Filterable, Partialable;
 
 	protected $fillable = [
         'title', 'description'
@@ -20,5 +20,5 @@ class Office extends Model
     public function spends()
     {
     	return $this->morphMany(Spend::class, 'spend_for');
-    }
+    }    
 }
